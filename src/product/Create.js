@@ -9,12 +9,13 @@ const CreateProduct = () => {
         price: 0,
         description: '',
         name: '',
+        image :'',
         attributes: {},
         productType: {
             id: 0,
         },
     });
-
+    const [image , setImage] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
@@ -46,14 +47,27 @@ const CreateProduct = () => {
         });
     };
 
+    const handleImageChange = (e) => {
+        const imageFile = e.target.files[0];
+        setImage(
+           imageFile
+        );
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         product.productType.id = +id;
-        console.log(product);
+        product.image = image.name;
+        const formData = new FormData();
+        formData.append('file', image);
+
         axios.post("http://localhost:8081/product/add" , product)
             .then(responce =>console.log(responce.data))
-            .catch(error=>console.log(error))
+            .catch(error=>console.log(error));
+
+        axios.post("http://localhost:8081/images/upload" , formData)
+            .then(responce =>console.log(responce.data))
+            .catch(error=>console.log(error));
     };
 
 
@@ -86,6 +100,14 @@ const CreateProduct = () => {
                         name="price"
                         value={product.price}
                         onChange={handleInputChange}
+                    />
+                </label>
+                <label>
+                    Image:
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
                     />
                 </label>
                 {attributes.map((attribute, index) => (

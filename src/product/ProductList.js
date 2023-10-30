@@ -17,11 +17,20 @@ const ProductList = () => {
     }, []);
 
     return (
-        <div className="product-list">
-            <h2>Product List</h2>
-            {products.map((product, index) => (
-                <ProductCard key={index} product={product} />
-            ))}
+        <div>
+            <div className={"text-center"}>
+                <h2>Product List</h2>
+            </div>
+        <div className="product-list container-fluid">
+            <br/>
+            <div className="container">
+                <div className="row">
+                        {products.map((product, index) => (
+                            <ProductCard key={index} product={product} />
+                        ))}
+                </div>
+            </div>
+        </div>
         </div>
     );
 };

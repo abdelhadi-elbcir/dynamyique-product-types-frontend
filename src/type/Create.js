@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './style.css';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Create = () => {
+    const navigate = useNavigate();
     const [productType, setProductType] = useState({
         name: '',
         productAttributes: [],
@@ -51,7 +53,7 @@ const Create = () => {
                         .then(res=>console.log(res.data))
                         .catch(error => console.log(error))
                 });
-
+                navigate(`/product/create/${type.id}`)
             }catch(error){
                 console.log(error);
             }

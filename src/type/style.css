@@ -63,3 +63,24 @@
 .attribute button:hover {
     background-color: #a31f2f;
 }
+
+
+.list-container {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* You can add additional styles as needed */
+
+.type-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}

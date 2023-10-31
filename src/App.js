@@ -5,19 +5,23 @@ import CreateType from "./type/Create";
 import CreateProduct from  "./product/Create";
 import ProductList from "./product/ProductList";
 import TypeList from "./type/List";
+import ProductListByType from "./product/ProductListByType";
 
 function App() {
   return (
     <BrowserRouter>
-        <Link style={{padding:"20px"}} to={"/type/create"}>add type</Link>
-        <Link style={{padding:"20px"}} to={"/product/create"}>add product</Link>
-        <Link style={{padding:"20px"}} to={"/product/list"}>List product</Link>
-        <Link style={{padding:"20px"}} to={"/type/list"}>All types</Link>
+        <div className="navbar">
+            <Link className="navbar-link" to="/type/create">Add Type</Link>
+            <Link className="navbar-link" to="/type/list">Add Product</Link>
+            <Link className="navbar-link" to="/product/listProductBytype">List Product by Type</Link>
+            <Link className="navbar-link" to="/type/list">All Types</Link>
+        </div>
       <Routes>
           <Route path={"/type/create"} element={<CreateType/>}/>
           <Route path={"/type/list"} element={<TypeList/>}/>
           <Route path={"/product/create/:id"} element={<CreateProduct/>}/>
-          <Route path={"/product/list"} element={<ProductList/>}/>
+          <Route index path={"/"} element={<ProductList/>}/>
+          <Route path={"/product/listProductBytype"} element={<ProductListByType/>}/>
       </Routes>
     </BrowserRouter>
   );
